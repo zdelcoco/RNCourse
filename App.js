@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Button, StyleSheet, TextInput, View, FlatList } from "react-native";
+import { useState } from 'react';
+import { Button, StyleSheet, TextInput, View, FlatList } from 'react-native';
 
-import GoalItem from "./components/GoalItem";
-import GoalInput from "./components/GoalInput";
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
@@ -13,7 +13,7 @@ export default function App() {
       return prevGoalKey + 1;
     });
 
-    if (enteredGoalText !== "") {
+    if (enteredGoalText !== '') {
       setCourseGoals((prevCourseGoals) => [
         ...prevCourseGoals,
         { key: goalKey, goal: enteredGoalText },
@@ -22,9 +22,9 @@ export default function App() {
   }
 
   function deleteGoalHandler(goalKey) {
-    const newCourseGoals = courseGoals.filter((goal) => goal.key != goalKey);
-
-    setCourseGoals(newCourseGoals);
+    setCourseGoals((prevCourseGoals) => {
+      return prevCourseGoals.filter((goal) => goal.key != goalKey);
+    });
   }
 
   function clearGoalsHandler() {
@@ -53,7 +53,7 @@ export default function App() {
         />
       </View>
       <View style={styles.clearGoalsContainer}>
-        <Button title="Clear Goals" onPress={clearGoalsHandler} />
+        <Button title='Clear Goals' onPress={clearGoalsHandler} />
       </View>
     </View>
   );
@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
   clearGoalsContainer: {
     flex: 1,
     borderTopWidth: 1,
-    borderTopColor: "#cccccc",
-    alignItems: "center",
-    flexDirection: "column",
-    justifyContent: "center",
+    borderTopColor: '#cccccc',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
     paddingBottom: 36,
     paddingTop: 8,
   },
