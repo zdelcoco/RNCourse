@@ -1,16 +1,16 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 function GoalItem(props) {
-  function deleteGoalHandler() {
-    props.onDeleteGoal(props.goalKey);
-  }
-
   return (
-    <TouchableOpacity onPress={deleteGoalHandler}>
-      <View style={styles.goalItem}>
+    <View style={styles.goalItem}>
+      <Pressable
+        android_ripple={{ color: '#210644' }}
+        onPress={props.onDeleteGoal.bind(this, props.goalKey)}
+        style={({ pressed }) => pressed && styles.pressedItem}
+      >
         <Text style={styles.goalText}>{props.text}</Text>
-      </View>
-    </TouchableOpacity>
+      </Pressable>
+    </View>
   );
 }
 
@@ -19,12 +19,15 @@ export default GoalItem;
 const styles = StyleSheet.create({
   goalItem: {
     margin: 8,
-    padding: 8,
     borderRadius: 6,
-    backgroundColor: "#5e08cc",
-    color: "white",
+    backgroundColor: '#5e08cc',
+    color: 'white',
+  },
+  pressedItem: {
+    opacity: 0.5,
   },
   goalText: {
-    color: "white",
+    color: 'white',
+    padding: 8,
   },
 });
